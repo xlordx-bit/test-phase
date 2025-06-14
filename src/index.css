@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: Custom smooth scroll and background gradient */
+body {
+  @apply bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white min-h-screen scroll-smooth font-sans;
+}
+/* ========== Custom Scrollbar Styling ========== */
+::-webkit-scrollbar {
+  height: 8px; /* for horizontal scrollbars */
+  width: 8px;  /* for vertical scrollbars, if needed */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+.floating-words {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* so clicks pass through */
+  overflow: hidden;
+  z-index: 0; /* behind content */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  color: rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+  font-size: 2rem;
+  user-select: none;
+}
+
+.floating-words span {
+  position: relative;
+  animation: floatUp 6s linear infinite;
+  opacity: 0;
+  animation-delay: calc(var(--i) * 1.2s);
+}
+
+.floating-words span:nth-child(1) { --i: 0; }
+.floating-words span:nth-child(2) { --i: 1; }
+.floating-words span:nth-child(3) { --i: 2; }
+.floating-words span:nth-child(4) { --i: 3; }
+.floating-words span:nth-child(5) { --i: 4; }
+.floating-words span:nth-child(6) { --i: 5; }
+.floating-words span:nth-child(7) { --i: 6; }
+.floating-words span:nth-child(8) { --i: 7; }
+.floating-words span:nth-child(9) { --i: 8; }
+.floating-words span:nth-child(10) { --i: 9; }
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+}
+
+.main-content {
+  position: relative;
+  z-index: 1; /* above floating words */
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+section {
+  padding-top: 80px; /* adjust this to your header height + some spacing */
+  scroll-margin-top: 80px; /* so anchor links scroll correctly */
+}
